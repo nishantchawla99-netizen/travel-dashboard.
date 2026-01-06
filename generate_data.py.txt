@@ -1,0 +1,23 @@
+import pandas as pd
+import random
+
+# CONFIG
+rows = 150
+orgs = ["Alpha Corp", "Beta Ltd", "Gamma Inc", "Delta Sol", "Omega Grp", "Zeta Ind"]
+status = ["Onboarded", "Unmanaged"]
+types = ["Enterprise", "SME"]
+
+data = []
+for _ in range(rows):
+    row = {
+        "Organisation Name": random.choice(orgs),
+        "Month": random.choice(["June", "July", "Aug"]),
+        "Spend": random.randint(10000, 200000),
+        "Status": random.choices(status, weights=[0.7, 0.3])[0],
+        "Org Type": random.choice(types)
+    }
+    data.append(row)
+
+df = pd.DataFrame(data)
+df.to_excel("travel_data.xlsx", index=False)
+print("travel_data.xlsx created!")
